@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:latihanquiz_009/data/menulist.dart';
-import 'package:latihanquiz_009/models/modeldata.dart';
+import 'package:latihanquiz/data/menulist.dart';
+import 'package:latihanquiz/models/modeldata.dart';
 import 'orderdetailpage.dart';
 
 class Homepage extends StatelessWidget {
@@ -66,7 +66,7 @@ class Homepage extends StatelessWidget {
                           child: ClipRRect(
                             borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
                             child: Image.network(
-                              item.imageUrl,
+                              item.imageAsset,
                               fit: BoxFit.cover,
                               errorBuilder: (context, error, stackTrace) =>
                                   const Icon(Icons.fastfood, size: 50),

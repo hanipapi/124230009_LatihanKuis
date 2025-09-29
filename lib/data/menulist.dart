@@ -1,28 +1,28 @@
-import 'package:latihanquiz_009/models/modeldata.dart';
+import 'package:latihanquiz/models/modeldata.dart';
 
 List<MenuItem> menuList = [
   MenuItem(
-    name: 'Nasi Goreng',
-    price: '15.000',
-    imageUrl: 'https://via.placeholder.com/150/CCCCCC/FFFFFF?text=Nasi',
+    name: 'Bakso',
+    price: 15000,
+    imageAsset: "assets/bakso.jpg",
     description: 'Nasi goreng spesial dengan telur, ayam, dan sayuran.',
   ),
   MenuItem(
     name: 'Mie Ayam',
-    price: '12.000',
-    imageUrl: 'https://via.placeholder.com/150/CCCCCC/FFFFFF?text=Mie',
+    price: 12000,
+     imageAsset: "assets/mie_ayam.jpg",
     description: 'Mie ayam lezat dengan kuah gurih dan topping ayam.',
   ),
   MenuItem(
     name: 'Sate Ayam',
-    price: '20.000',
-    imageUrl: 'https://via.placeholder.com/150/CCCCCC/FFFFFF?text=Sate',
+    price: 20000,
+     imageAsset: "assets/sate.jpg",
     description: 'Sate ayam dengan bumbu kacang khas Indonesia.',
   ),
   MenuItem(
-    name: 'Bakso',
-    price: '10.000',
-    imageUrl: 'https://via.placeholder.com/150/CCCCCC/FFFFFF?text=Bakso',
+    name: 'Soto',
+    price: 10000,
+     imageAsset: "assets/soto.jpg",
     description: 'Bakso sapi dengan kuah segar dan mie bihun.',
   ),
 ];

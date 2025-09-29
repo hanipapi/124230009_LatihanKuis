@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:latihanquiz_009/login_page.dart';
+import 'package:latihanquiz/login_page.dart';
 
 void main() {
   runApp(const MyApp());

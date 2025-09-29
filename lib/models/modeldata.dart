@@ -1,13 +1,13 @@
 class MenuItem {
   String name;
-  String price;
-  String imageUrl;
+  int price;
+  String imageAsset;
   String description;
 
   MenuItem({
     required this.name,
     required this.price,
-    required this.imageUrl,
+    required this.imageAsset,
     required this.description,
   });
 }
