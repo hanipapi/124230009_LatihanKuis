@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:latihanquiz/models/modeldata.dart';
 
+// Halaman detail pesanan
 class OrderDetailPage extends StatefulWidget {
-  final MenuItem menuItem;
+  final MenuItem menuItem; // ✅ Data menu yang dipilih user dikirim dari halaman sebelumnya
 
   const OrderDetailPage({super.key, required this.menuItem});
 
@@ -11,46 +12,50 @@ class OrderDetailPage extends StatefulWidget {
 }
 
 class _OrderDetailPageState extends State<OrderDetailPage> {
-  int quantity = 1;
-  int total = 0;
-  final TextEditingController _controller = TextEditingController(text: "1");
+  int quantity = 1; // ✅ Jumlah item default = 1
+  int total = 0; // ✅ Total harga, dihitung dari harga * jumlah
+  final TextEditingController _controller = TextEditingController(text: "1"); 
+  // ✅ Controller untuk input jumlah item (biar bisa diubah user manual lewat TextField)
 
-  int get price => widget.menuItem.price; // price dari model sudah int
+  int get price => widget.menuItem.price; 
+  // ✅ Getter untuk ambil harga dari model MenuItem
 
   @override
   void initState() {
     super.initState();
-    total = price * quantity;
+    total = price * quantity; // ✅ Saat halaman dibuka, total langsung dihitung
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    _controller.dispose(); // ✅ Pastikan controller dibersihkan dari memori
     super.dispose();
   }
 
   void updateTotal() {
-    final input = int.tryParse(_controller.text) ?? 1;
+    final input = int.tryParse(_controller.text) ?? 1; 
+    // ✅ Ambil angka dari TextField, kalau kosong/invalid default = 1
     setState(() {
-      quantity = input < 1 ? 1 : input; // minimal 1
-      total = price * quantity;
+      quantity = input < 1 ? 1 : input; // ✅ Minimal pembelian 1
+      total = price * quantity; // ✅ Hitung ulang total
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.menuItem.name)),
+      appBar: AppBar(title: Text(widget.menuItem.name)), // ✅ Judul appbar pakai nama menu
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0), // ✅ Padding biar konten gak mepet
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // ✅ Tampilan gambar menu
             Center(
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(12), // ✅ Bikin gambar rounded
                 child: Image.asset(
-                  widget.menuItem.imageAsset,
+                  widget.menuItem.imageAsset, // ✅ Ambil gambar dari model
                   height: 200,
                   width: double.infinity,
                   fit: BoxFit.cover,
@@ -58,11 +63,15 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
               ),
             ),
             const SizedBox(height: 16),
+
+            // ✅ Nama menu
             Text(
               widget.menuItem.name,
               style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
+
+            // ✅ Harga satuan
             Text(
               "Harga: Rp $price",
               style: const TextStyle(fontSize: 18, color: Colors.black54),
@@ -80,8 +89,8 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                 SizedBox(
                   width: 80,
                   child: TextField(
-                    controller: _controller,
-                    keyboardType: TextInputType.number,
+                    controller: _controller, // ✅ Hubungkan ke TextEditingController
+                    keyboardType: TextInputType.number, // ✅ Hanya angka
                     textAlign: TextAlign.center,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
@@ -90,8 +99,10 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                   ),
                 ),
                 const SizedBox(width: 12),
+
+                // ✅ Tombol untuk update jumlah
                 ElevatedButton(
-                  onPressed: updateTotal,
+                  onPressed: updateTotal, // ✅ Jalankan fungsi update total
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 16,
@@ -104,6 +115,8 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
             ),
 
             const SizedBox(height: 16),
+
+            // ✅ Menampilkan total harga
             Text(
               "Total: Rp $total",
               style: const TextStyle(
@@ -112,11 +125,15 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                 color: Colors.blueAccent,
               ),
             ),
-            const Spacer(),
+
+            const Spacer(), // ✅ Dorong tombol ke bawah layar
+
+            // ✅ Tombol Pesan Sekarang
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
+                  // ✅ Tampilkan pesan sukses
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text(
@@ -124,6 +141,9 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                       ),
                     ),
                   );
+
+                  // ✅ Kembali ke halaman sebelumnya (HomePage)
+                  Navigator.pop(context);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.green,
